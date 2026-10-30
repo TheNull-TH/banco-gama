@@ -6,53 +6,8 @@
   <meta name="description" content="Panel interno de operaciones de Banco Gama" />
   <title>Banco Gama · Centro de Control</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            ink: '#07111f',
-            panel: '#0c1929',
-            panel2: '#102237',
-            line: '#20364c',
-            emerald: '#22c78a',
-            cyber: '#5ed9ff'
-          },
-          boxShadow: { glow: '0 0 28px rgba(34,199,138,.16)' }
-        }
-      }
-    }
-  </script>
-  <style>
-    html { background: #07111f; }
-    body { background: #07111f; }
-    .content-shell { background: #eef3f4; color: #17202b; min-height: calc(100vh - 73px); }
-    .content-shell .text-white { color: #17202b !important; }
-    .content-shell .text-slate-200 { color: #263442 !important; }
-    .content-shell .text-slate-400 { color: #647483 !important; }
-    .content-shell .text-slate-500 { color: #748391 !important; }
-    .content-shell .text-slate-600 { color: #8795a0 !important; }
-    .content-shell .bg-panel\/90 { background: linear-gradient(145deg, rgba(255,255,255,.97), rgba(244,249,249,.92)) !important; border-color: #d7e1e4 !important; box-shadow: 0 12px 32px rgba(34,55,66,.07); }
-    .content-shell h1 { color: #102331 !important; }
-    .content-shell h2 { color: #163343 !important; }
-    .content-shell article { transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
-    .content-shell article:hover { transform: translateY(-2px); border-color: rgba(34,199,138,.35) !important; box-shadow: 0 16px 34px rgba(34,55,66,.1); }
-    .content-shell .bg-cyber\/10 { background: rgba(30,160,198,.11) !important; }
-    .content-shell .bg-emerald\/10 { background: rgba(25,174,119,.11) !important; }
-    .content-shell .text-cyber { color: #087fa8 !important; }
-    .content-shell .text-emerald { color: #078b62 !important; }
-    .content-shell .text-amber-300 { color: #a66a00 !important; }
-    .content-shell .text-purple-300 { color: #7652b5 !important; }
-    .content-shell .border-line { border-color: #d7e1e4 !important; }
-    .content-shell .divide-line\/70 > :not([hidden]) ~ :not([hidden]) { border-color: #e1e8ea !important; }
-    .content-shell .bg-white\/\[\.025\] { background: rgba(24,53,64,.035) !important; }
-    .content-shell .hover\:bg-white\/\[\.025\]:hover { background: rgba(24,53,64,.04) !important; }
-    .drawer { transform: translateX(-105%); transition: transform .25s ease; }
-    .drawer.open { transform: translateX(0); }
-    .grid-bg { background-image: linear-gradient(rgba(94,217,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(94,217,255,.035) 1px, transparent 1px); background-size: 32px 32px; }
-    .scrollbar::-webkit-scrollbar { width: 5px; height: 5px; } .scrollbar::-webkit-scrollbar-thumb { background: #25465c; border-radius: 99px; }
-    .toast { animation: toast-in .3s ease-out both; } @keyframes toast-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-  </style>
+  <script src="./tailwind-config.js"></script>
+  <link rel="stylesheet" href="./styles.css" />
 </head>
 <body class="min-h-screen text-slate-200 antialiased">
   <div class="flex min-h-screen">
@@ -107,21 +62,6 @@
     </main>
   </div>
   <div id="toast" class="pointer-events-none fixed bottom-6 right-6 hidden max-w-sm rounded-xl border border-emerald/30 bg-panel2 px-4 py-3 shadow-2xl shadow-emerald/10"><div class="flex gap-3"><span class="mt-0.5 text-emerald">✓</span><div><p class="text-sm font-semibold text-white">Servidor local respondiendo</p><p id="toastText" class="mt-1 text-xs text-slate-400">Carga validada correctamente.</p></div></div></div>
-  <script>
-    const transfers = [
-      ['TRX-84921', 'Nexora Holdings', 'Singapur', '$482,300.00', 'Aprobada'], ['TRX-84920', 'Atlas Meridian Ltd.', 'Reino Unido', '$126,850.40', 'En revisión'], ['TRX-84919', 'Orbis Capital', 'Suiza', '$875,000.00', 'Aprobada'], ['TRX-84918', 'Kairo Systems', 'Japón', '$64,210.75', 'Aprobada'], ['TRX-84917', 'Velum Partners', 'Canadá', '$219,440.00', 'Pendiente']
-    ];
-    const countries = ['Alemania', 'Brasil', 'Australia', 'Países Bajos', 'Emiratos Árabes'];
-    const names = ['Northstar Group', 'Aurelia Bank', 'Mistral Ventures', 'Cobalt Finance', 'Lumen Trade'];
-    function renderRows() { document.getElementById('transferRows').innerHTML = transfers.map((row) => `<tr class="transition hover:bg-white/[.025]"><td class="px-5 py-4 font-mono text-xs text-cyber/80">${row[0]}</td><td class="px-5 py-4 font-medium text-slate-200">${row[1]}</td><td class="px-5 py-4 text-slate-400">${row[2]}</td><td class="px-5 py-4 font-mono text-xs text-slate-300">${row[3]}</td><td class="px-5 py-4"><span class="rounded-full px-2.5 py-1 text-[10px] font-semibold ${row[4] === 'Aprobada' ? 'bg-emerald/10 text-emerald' : row[4] === 'En revisión' ? 'bg-amber-400/10 text-amber-300' : 'bg-cyber/10 text-cyber'}">${row[4]}</span></td></tr>`).join(''); }
-    function runTest() { const id = 'TRX-' + Math.floor(85000 + Math.random() * 999); const amount = '$' + (Math.random() * 900000 + 25000).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}); transfers.unshift([id, names[Math.floor(Math.random()*names.length)], countries[Math.floor(Math.random()*countries.length)], amount, 'Aprobada']); if (transfers.length > 8) transfers.pop(); renderRows(); const toast = document.getElementById('toast'); document.getElementById('toastText').textContent = `Nueva fila ${id} procesada en ${Math.floor(38 + Math.random()*48)} ms.`; toast.classList.remove('hidden'); toast.classList.add('toast'); setTimeout(() => toast.classList.add('hidden'), 4200); }
-    renderRows(); document.getElementById('loadTest').addEventListener('click', runTest); document.getElementById('loadTestMobile').addEventListener('click', runTest);
-    const drawer = document.getElementById('mobileDrawer');
-    document.getElementById('menuButton').addEventListener('click', () => { drawer.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); });
-    document.getElementById('closeDrawer').addEventListener('click', () => { drawer.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); });
-    const views = { dashboard: document.getElementById('dashboardView'), transferencias: document.getElementById('transferenciasView'), reservas: document.getElementById('reservasView'), seguridad: document.getElementById('seguridadView') };
-    function showView(viewName) { Object.entries(views).forEach(([name, element]) => element.classList.toggle('hidden', name !== viewName)); document.querySelectorAll('[data-view]').forEach((link) => link.classList.toggle('bg-cyber/10', link.dataset.view === viewName)); drawer.classList.remove('open'); }
-    document.querySelectorAll('[data-view]').forEach((link) => link.addEventListener('click', (event) => { event.preventDefault(); showView(link.dataset.view); }));
-  </script>
+  <script src="./app.js"></script>
 </body>
 </html>

@@ -1,0 +1,136 @@
+html,
+body {
+  background: #07111f;
+}
+
+.content-shell {
+  background: #eef3f4;
+  color: #17202b;
+  min-height: calc(100vh - 73px);
+}
+
+.content-shell .text-white {
+  color: #17202b !important;
+}
+
+.content-shell .text-slate-200 {
+  color: #263442 !important;
+}
+
+.content-shell .text-slate-400 {
+  color: #647483 !important;
+}
+
+.content-shell .text-slate-500 {
+  color: #748391 !important;
+}
+
+.content-shell .text-slate-600 {
+  color: #8795a0 !important;
+}
+
+.content-shell .bg-panel\/90 {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.97), rgba(244, 249, 249, 0.92)) !important;
+  border-color: #d7e1e4 !important;
+  box-shadow: 0 12px 32px rgba(34, 55, 66, 0.07);
+}
+
+.content-shell h1 {
+  color: #102331 !important;
+}
+
+.content-shell h2 {
+  color: #163343 !important;
+}
+
+.content-shell article {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.content-shell article:hover {
+  transform: translateY(-2px);
+  border-color: rgba(34, 199, 138, 0.35) !important;
+  box-shadow: 0 16px 34px rgba(34, 55, 66, 0.1);
+}
+
+.content-shell .bg-cyber\/10 {
+  background: rgba(30, 160, 198, 0.11) !important;
+}
+
+.content-shell .bg-emerald\/10 {
+  background: rgba(25, 174, 119, 0.11) !important;
+}
+
+.content-shell .text-cyber {
+  color: #087fa8 !important;
+}
+
+.content-shell .text-emerald {
+  color: #078b62 !important;
+}
+
+.content-shell .text-amber-300 {
+  color: #a66a00 !important;
+}
+
+.content-shell .text-purple-300 {
+  color: #7652b5 !important;
+}
+
+.content-shell .border-line {
+  border-color: #d7e1e4 !important;
+}
+
+.content-shell .divide-line\/70 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #e1e8ea !important;
+}
+
+.content-shell .bg-white\/\[\.025\] {
+  background: rgba(24, 53, 64, 0.035) !important;
+}
+
+.content-shell .hover\:bg-white\/\[\.025\]:hover {
+  background: rgba(24, 53, 64, 0.04) !important;
+}
+
+.drawer {
+  transform: translateX(-105%);
+  transition: transform 0.25s ease;
+}
+
+.drawer.open {
+  transform: translateX(0);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(94, 217, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 217, 255, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.scrollbar::-webkit-scrollbar-thumb {
+  background: #25465c;
+  border-radius: 99px;
+}
+
+.toast {
+  animation: toast-in 0.3s ease-out both;
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
